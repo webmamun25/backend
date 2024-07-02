@@ -6,14 +6,14 @@ const port = process.env.PORT || 6310
 
 app.use(express.json())
 app.use(cors({
-  origin: 'https://helpful-malabi-15e80a.netlify.app',
+  origin: ['http://localhost:5173','https://helpful-malabi-15e80a.netlify.app','https://helpful-malabi-15e80a.netlify.app/users','https://helpful-malabi-15e80a.netlify.app/blogs','https://helpful-malabi-15e80a.netlify.app/skills','https://helpful-malabi-15e80a.netlify.app/mail','https://helpful-malabi-15e80a.netlify.app/testimonial'],
   credentials:true
  
 }));
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qdiymxl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-console.log(uri)
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qdiymxl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/`;
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -24,7 +24,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     
-    await client.connect();
+    // await client.connect();
 
     const BlogsCollection = client.db("Portfolio").collection("blogs");
    
